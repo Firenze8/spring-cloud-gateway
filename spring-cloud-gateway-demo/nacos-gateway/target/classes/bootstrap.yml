@@ -1,0 +1,21 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: nacos-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos.mylearn.com:81
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          low-case-service-id: true
+      routes:
+        - id: nacos-gateway-provider
+          uri: lb://nacos-provider
+          predicates:
+            - Path=/provider/**
+          filters:
+            - StripPrefix=0

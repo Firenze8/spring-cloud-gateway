@@ -1,0 +1,17 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8100/eureka/
+server:
+  port: 80
+spring:
+  application:
+    name: service-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-member/**
+      serviceId: app-ilearn-member
+    api-b:
+      path: /api-order/**
+      serviceId: app-ilearn-order
